@@ -1,45 +1,55 @@
-.otpform{
+  .otpdetails{
     box-sizing: border-box;
-    /* width: 100%; */
-    /* max-width: 400px; */
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
-   }
-  
-  .otpdetails{
-  
-      /* border: solid 3px #2eca6a; */
-      /* padding-top:10px; */
-
-      width: 35%;
-      height: 20%;
-      position: absolute;
-      margin-left:46%;
-      margin-right:10%;
-      z-index: 2;
-      border-radius: 10px;
-      background-color: white;
-      font-family: 'Poppins', sans-serif;
-      font-size: 25px;
-      text-align: center;
-      align-content: right;
-      box-shadow:inset 0 0 8px 3px #2eca6a;
-
-
-/* 
-      padding-top:1.5%;
-      width: 35%;
-      height: 75%;
-      position: absolute;
-      margin-left:60%;
-      z-index: 2;
-      border-radius: 10px;
-      background-color: white;
-      font-family: 'Poppins', sans-serif;
-      font-size: 25px;
-      text-align: center;
-      align-content: center;
-      box-shadow:inset 0 0 8px 3px #2eca6a;
-     */
+    padding-bottom: 30px;
+    padding-top:25px;
+    margin-top: 130px;
+    width: 35%;
+    height: 40%;
+    position: absolute;
+    margin-left:60%;
+    margin-right:10%;
+    z-index: 2;
+    border-radius: 10px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    align-content: right;
+    box-shadow:inset 0 0 8px 3px #2eca6a;
+    color: black;
+    font-weight: bold;
   }
+
+  .otpclass
+{
+  margin-top:4%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 90%;
+  height: 15%;
+  padding-top: 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  border: none;
+  border-right: solid #2eca6a 3px;
+  border-bottom: solid #2eca6a 3px;
+  border-top: solid 3px lightgrey;
+  border-left: solid 3px lightgrey;
+}
+
+.otpblock
+{
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.btn{
+    
+}

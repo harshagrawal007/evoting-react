@@ -12,7 +12,7 @@ class App extends React.Component {
 
   async componentDidMount(){
     try{
-      let res = await fetch('http://localhost:3002/isLoggedIn',  {
+      let res = await fetch('http://localhost:3003/isLoggedIn',  {
         method: 'post',
         headers: {
           headers : {
@@ -50,32 +50,12 @@ class App extends React.Component {
       );
     }
     else{
-      // if(Userstorage.isLoggedIn){
-      //   return ( 
-      //     <div className="app">
-      //         <div className = "container">
-      //             Welcome {Userstorage.username}
-      //             <SubmitButton>
-      //               text = {'Log Out'}
-      //               disabled = {false}
-      //               onClick = {() => this.doLogout()}  
-      //             </SubmitButton>
-      //         </div>
-
-      //     </div>
-      //   );
-      // }
       return (
         <BrowserRouter>
-        
           <div className="app">
-             {/* <div className = 'container'>  */}
-              
-              {/* <LoginFrom></LoginFrom> */}
-            {/* </div>  */}
             <Main/>
           </div>
-          </BrowserRouter>
+        </BrowserRouter>
       );
     }
   }

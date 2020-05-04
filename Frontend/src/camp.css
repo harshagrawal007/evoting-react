@@ -1,0 +1,145 @@
+.camptitle{
+    background-color: rgb(212, 194, 192);
+    padding: 5% 0 5% 0;
+    }
+
+    .abc{
+        display:flex;
+        
+    }
+
+    .detailTitle{
+        font-weight: 600;
+    }
+
+    #camptitle2{
+        padding-left: 5%;
+    }
+
+.camp
+{
+  font-size: 35px;
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float: left;
+  margin-left:70px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-left:10px;
+  text-decoration: underline;
+}
+
+.candidatePhoto{
+ block-size: 300px;
+}
+
+.campb
+{
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float: center;
+  margin-left:70px !important;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #2eca6a;
+}
+
+.btnlogout
+{
+  font-size: 20px;
+  min-width: 130px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 25px;
+  color: black;
+  border: none;
+  margin-top: 35px;
+  margin-left: 1050px;
+}
+
+.applicantheader
+{
+  margin-top: 2%;
+}
+
+.can, .btnsettle
+{
+  float: right;
+  margin-top: 0px;
+  width: 200px;
+}
+
+.can{
+  margin-right: 1%;
+  background-color: #D1F2EB;
+}
+
+.btnsettle
+{
+  font-size: 20px;
+  margin-right: 11%;
+  min-width: 130px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 25px;
+  color: black;
+  background-color: #F2D7D5  ;
+  font-weight: normal;
+}
+
+.columns
+{
+  margin-left: 7.5%;
+  margin-top: 10%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.header{
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; 
+  padding: 5px;
+  width: 89.5%;
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.candinfo{
+  margin-top:3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 95%;
+  height: 20%;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 15px;
+  border: none;
+  border-right: solid #2eca6a 3px;
+  border-bottom: solid #2eca6a 3px;
+  border-top: solid 3px lightgrey;
+  border-left: solid 3px lightgrey;
+}
+
+.addcandi
+{
+  width: 20%;
+  height: 20%;
+  float: left;
+  margin-left: 42%;
+}

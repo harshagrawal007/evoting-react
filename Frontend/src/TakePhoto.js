@@ -12,47 +12,81 @@ class TakePhoto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: UserStorage.username      
+            username: UserStorage.username  
+            //username:  "harshagrawal007"  
           }
         this.captureImage = this.captureImage.bind(this);
+        
     }
     async captureImage() {
         console.log('in capture image ')
-        // if (!this.state.username)
-        // return;
 
         try{
-        console.log('in capture image ');
+        console.log('in capture image for login: '+this.props.location);
+
+       // var fv = this.props.location.state.voterfv;
+        //console.log("Feature vector to be passed: " + fv);
         
-        var data = {}
+        //var data = {"username":this.state.username,
+        //"feature_vector":fv}
+        var data={};
         data.username= this.state.username
-        const response = await axios.post('http://localhost:5000/api/predict',data)
+        console.log("image verification success");
+        swal.fire({
+            icon: 'success',
+            title: 'Congrats!! Image Taken!',
+            text: 'You have successfully verified yourself',
+            confirmButtonText: "OK"
+        });
 
-        console.log(" response.data" + response)
-        console.log(" response.data" + JSON.stringify(response.data))
-
-        let result = response.data.success;
-
-            if (result) {
-                console.log("image verification success");
-                swal.fire({
-                    icon: 'success',
-                    title: 'Congrats!! Image Taken!',
-                    text: 'You have successfully verified yourself',
-                    confirmButtonText: "OK"
-                });
-
-                this.props.history.push("/welcome");
-            }else{
-                console.log("image verification failed");
-                swal.fire({
-                    icon: 'error',
-                    title: 'Image Verification Failed!',
-                    text: 'You have failed image verification Try again',
-                    confirmButtonText: "OK"
-                });
-                this.props.history.push("/Login");
+        this.props.history.push({
+            pathname: "/welcome",
+            state: {
+                    username:this.state.username,
             }
+        });
+       // const response = await axios.post('http://localhost:5000/api/predict',data)
+
+        // console.log(" response.data" + response)
+        // console.log(" response.data" + JSON.stringify(response.data))
+
+        // let result = response.data.success;
+        // let spoofing = response.data.spoofing
+        //     if (result) {
+        //         console.log("image verification success");
+        //         swal.fire({
+        //             icon: 'success',
+        //             title: 'Congrats!! Image Taken!',
+        //             text: 'You have successfully verified yourself',
+        //             confirmButtonText: "OK"
+        //         });
+
+        //         this.props.history.push({
+        //                 pathname: "/welcome",
+        //                 state: {
+        //                     username:this.state.username,
+        //                 }
+        //             });
+        //     }else if (spoofing){
+        //         console.log("image verification failed");
+        //         swal.fire({
+        //             icon: 'error',
+        //             title: 'Looks like a spoofing attack!',
+        //             text: 'Last warning, account will be terminated next time.',
+        //             confirmButtonText: "OK"
+        //         });
+        //         this.props.history.push("/Login");
+        //     }
+        //     else{
+        //         console.log("image verification failed");
+        //         swal.fire({
+        //             icon: 'error',
+        //             title: 'Image Verification Failed!',
+        //             text: 'You have failed image verification Try again',
+        //             confirmButtonText: "OK"
+        //         });
+        //         this.props.history.push("/Login");
+        //     }
         }
         catch(e){}
     }
@@ -63,54 +97,44 @@ class TakePhoto extends Component {
        
  <div className ="container">
         <div className= "header">
-            <div className="navigationclass row">
-                    <ul className="navbar-nav" id="navg">
-                        <li className="nav-item">
-                        <Link to="/RegisterInfo" className="nav-link register" id="reg" >Register
-                        </Link>
-                        </li>
-                        <li className="nav-item">
-                        <Link to="/Login" className="nav-link" id="log" >Login
-                        </Link>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" id="hom" >Hi there</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="brand">Electronic</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="colorb">Ballot</a>
-                        </li>
-                    </ul>
-                </div>
+        <ul className="navbar-nav" id="navg">
+                            <li className="nav-item">
+                                <a className=" brand">Electronic Ballot</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="colorb">on BlockChain</a>
+                            </li>
+                            <Link to="/AdminLogin" className="nav-item nav-link admin" id="log"> Setup-Campaign
+                            </Link>
+                            <Link to="/RegisterInfo" className="nav-item nav-link reg" id="log"> Register
+                            </Link>
+                            <Link to="/Login" className="nav-item nav-link log" id="log"> Login
+                            </Link>
+                        </ul>
         </div>
+        <div className="row">
+            <div className="pitchline" id="pitch">
+                <div id="Main">Online election perfection!</div>
+                <div id="about">Our E-Voting solution is here for you.</div>
+            </div>
+        </div> 
 
-    <div className="row">
+        <div className="row">
             <div className="information" >
-                <div className="pitchline" id="pitch">
-                    <div id="Main">Online election perfection!</div>
-                    <div id="about">Our E-Voting solution is here for you.</div>
-                </div>
-            <div className="row registerimage">
-                <div className="overlayingreg col-md-6">
-                <div className="qoute">
-                    <div className ="h3" className="since-title"> Help.Us.Help.You
-                            <br></br>
-                            Security & Trust
+                <div className="registerimagever col-md-6"></div>
+                <div className="qoutetakephoto">
+                    <div className ="h3" className="since-title"> Helping People Connect
+                        <br></br>Since 2020
+                        <p>Security & Trust</p>
                     </div>
-                </div>
-                </div>
             </div>
             </div>
-
             <div className="canvasphoto" id="canvas" >
-                    <div>Photo:</div>
-                    <video className="videoclass" id="videoForImage" autoPlay width="250px" height="200px"></video>
-                    <div></div>
-                    <button className="rg cp" id="capture" onClick={this.captureImage}>Capture</button>
+                <div className="phototext">Take a picture!</div>
+                    <div className="userimage"></div>
+                    <button className="btn cap" id="capture" onClick={this.captureImage}>Capture</button>
+                </div>
             </div>
-    </div>   
  </div>
       );
     }

@@ -15,10 +15,7 @@ class Router {
         this.getVoterId(app,db);
         this.candidateList(app,db);
         this.candidatePost(app,db);
-        this.candidateCount(app,db);
-        this.getStartFrom(app,db);
-        this.settleElection(app,db);
-        this.electionSetteled(app,db);
+        this.candidateMaxId(app,db);
     }
 
     registerPost(app,db)
@@ -91,6 +88,8 @@ class Router {
             var sql = `SELECT * From Candidates`;
             db.query(sql, function (err, result, fields) {
                 if (err) throw err;
+
+                console.log("voter id: "+result);
                 //var candidates=[];
                 //candidates= result
                 res.json({
@@ -104,14 +103,15 @@ class Router {
 
         });
     }
-    candidateCount(app,db)
+    candidateMaxId(app,db)
     {
-        app.get('/candidateCount', function(req, res) {
-            var sql = `Select COUNT(*) as count from Candidates` ;
+        app.get('/candidateMaxId', function(req, res) {
+            var sql = `Select max(candidate_id) as max_id
+            from Candidates` ;
             db.query(sql, function (err, result, fields) {
                 if (err) throw err;
 
-                console.log("count is: "+result);
+                console.log("voter id: "+result);
                 //var candidates=[];
                 //candidates= result
                 //var max= result;
@@ -125,79 +125,6 @@ class Router {
             });
         });
     }
-
-    getStartFrom(app,db)
-    {
-        app.get('/getStartFrom', function(req, res) {
-            console.log("in getStartFrom")
-            var sql = `SELECT candidate_id FROM Candidates LIMIT 1` ;
-            db.query(sql, function (err, result, fields) {
-                if (err) throw err;
-
-                res.json({
-                    code: 200,
-                    success:true,
-                    data: result
-                });
-                return;
-            });
-        });
-    }
-
-    settleElection(app,db)
-    {
-        app.post('/settleElection', function(req, res) {
-            console.log("in settleElection")
-            var name = req.body.name;
-            var setteled = req.body.settled;
-            var timestamp = req.body.timestamp;
-
-            var sql = `INSERT INTO Setteled (setteled, winner, setteledon) VALUES(?,?,?)`;
-            db.query(sql, [setteled, name, timestamp], function(error, result) 
-            {
-                let candidate_id;
-                if (error) 
-                {
-                    console.log('An error ocurred...', error);
-                    res.json({
-                        code: 400,
-                        sucees:false,
-                        msg: 'An error ocurred..'
-                    });
-                    return;
-                } 
-                else{
-                    console.log('Success saved in DB');
-                    console.log('insertid ', result.insertId);
-
-                    res.json({
-                        code: 200,
-                        success:true
-                    });
-                    return;
-                }
-           });
-        });
-    }
-
-    electionSetteled(app,db)
-    {
-        app.get('/electionSetteled', function(req, res) {
-            console.log("in electionSetteled")
-            var sql = `SELECT winner FROM Setteled LIMIT 1` ;
-            db.query(sql, function (err, result, fields) {
-                if (err) throw err;
-
-                res.json({
-                    code: 200,
-                    success:true,
-                    data: result
-                });
-                return;
-            });
-        });
-    }
-
     candidatePost(app,db)
     {
         app.post('/newcandidate', function(req, res) {
@@ -240,7 +167,6 @@ class Router {
            });
         });
     }
-
     voterInfoPost(app,db)
     {
         app.post('/voterinfopost', function(req, res) {
@@ -284,6 +210,9 @@ class Router {
                     var q = "SELECT id FROM Voters where username = '" + username + "'";
                     db.query(q, function (err, result, fields) {
                         if (err) throw err;
+
+                        console.log("voter id: "+result[0].id);
+
                         res.json({
                             code: 200,
                             success:true,
@@ -377,6 +306,8 @@ class Router {
             db.query(sqlquery, function (err, result, fields) 
             {
                 if (err) throw err;
+                console.log("voter id: "+result[0].id);
+
                 res.json({
                     code: 200,
                     success:true,

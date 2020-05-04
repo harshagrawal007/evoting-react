@@ -14,9 +14,9 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 //DB
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'bam',
+    user: 'root',
     password: 'bam',
-    database: 'Evoting'
+    database: 'bam'
 });
 
 db.connect(function(err){
@@ -50,5 +50,5 @@ app.get('/',function(req,res){
     res.sendFile(path.join(__dirname,'build','index.html'));
 })
 
-app.listen(3002);
+app.listen(3003);
 

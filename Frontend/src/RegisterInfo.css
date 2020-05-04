@@ -1,21 +1,38 @@
 .registerimage{
     background-image: url('./register.jpg'); 
-    background-position: right;
+    background-position: center center;
+    position: absolute;
+    z-index: -1;
     background-size: cover;
     height: 500px;
-    margin-left:10%;
-    width:70%;
-    /* width: 50%; */
+    margin-left:250px;
+    margin-top:270px;
+    width:72%;
   }
 
   .overlayingreg
 {
-  position: relative;
-  margin-right: 20%;
-  padding-top: 5%;
-  z-index: 0;
-  height: 60%;
-  width: 60%;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+  padding-top:25px;
+  margin-top: 130px;
+  width: 35%;
+  height: 78%;
+  position: absolute;
+  margin-left:58%;
+  margin-right:10%;
+  z-index: 2;
+  border-radius: 10px;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  text-align: center;
+  align-content: right;
+  box-shadow:inset 0 0 8px 3px #2eca6a;
+  color: black;
+  font-weight: bold;
 }
 
 .qoutereg
@@ -47,37 +64,56 @@
     font-size: 20px; visibility: hidden;
 }
 
-.resgitrationdetails{
-  /* border: solid 3px #2eca6a; */
-  padding-top:1.5%;
-  width: 65%;
-  height: 100%;
-  position: absolute;
-  margin-left:60%;
-  z-index: 2;
-  border-radius: 10px;
-  background-color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 25px;
-  text-align: center;
-  align-content: center;
-  box-shadow:inset 0 0 8px 3px #2eca6a;
-}
-
 .registerclass
 {
   margin-top:3%;
-  width: 90%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 95%;
   height: 8%;
   border-radius: 10px;
   font-size: 20px;
   font-family: 'Poppins', sans-serif;
   padding-left: 15px;
-  padding-bottom: 0px;
   border: none;
   border-right: solid #2eca6a 3px;
   border-bottom: solid #2eca6a 3px;
   border-top: solid 3px lightgrey;
   border-left: solid 3px lightgrey;
-  /* box-shadow:inset 0 0 3px 3px #41A51F; */
 }
+
+#fname
+{
+    margin-top: 20px;
+}
+
+.rg{
+  width: 30%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 15px;
+  height: 10%;
+  font-size: 25px;
+  color: black;
+  background-color:#2eca6a;
+  border: none;
+  font-weight: normal;
+}
+
+.reg1
+{
+  padding-right: 10px;
+  padding-left:550px;
+  color: #2eca6a;
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+}
+
+.reg2{
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+}
+
+.submitButton {
+  padding-top: 0px;
+ }

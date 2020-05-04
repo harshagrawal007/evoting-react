@@ -10,15 +10,15 @@ import swal from "sweetalert2";
 const notifier = require('node-notifier');
 
 class VerifyEmail extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             otp: '',
-            email: RegisterStorage.email,
-            username:RegisterStorage.username
+            email: '',
+            username: ''
         }
         this.onChange = this.onChange.bind(this);
+        console.log("Props in verify email page: " + this.props.location.state.password + " " + this.props.location.state.username);
     }
 
     onChange(e) {
@@ -50,8 +50,9 @@ class VerifyEmail extends Component {
     async doOtpPost() {
         if (!this.state.otp)
             return;
+    
         try {
-            let res = await fetch('http://localhost:3002/otppost', {
+            let res = await fetch('http://localhost:3003/otppost', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -66,37 +67,31 @@ class VerifyEmail extends Component {
 
             let result = await res.json();
             if (result && result.success) {
-                // let redirectVar = null;
-
                 swal.fire({
                     icon: 'success',
                     title: 'Congrats!! Email Verfied!',
                     text: 'Continue to upload your image!',
                     confirmButtonText: "OK"
                 });
-                // notifier.notify({
-                //     title: 'Congrats!! Email Verfied!',
-                //     message: 'Continue to upload your image!',
-                //     icon: 'dwb-logo.png',
-                //     contentImage: 'blog.png',
-                //     sound: 'ding.mp3',
-                //     wait: true
-                // });
-                console.log("username" + result.username);
-                this.props.history.push("/takeregisterphoto");
-                
-                // redirectVar = <Redirect to="/welcome" />
+
+                console.log("username in verifyemail 1: " + this.state.password);
+                console.log("username in verifyemail 2: " + this.props.location.state.username);
+                console.log(this.props.location);
+                this.props.history.push({
+                    pathname: "/takeregisterphoto",
+                    state: {
+                        password: this.props.location.state.password,
+                        username: this.props.location.state.username,
+                        fname: this.props.location.state.fname,
+                        lname: this.props.location.state.lname,
+                        dob: this.props.location.state.dob,
+                        gender: this.props.location.state.gender,
+                        email: this.props.location.state.email
+                    }
+                });
             }
 
             else if (result && result.success === false) {
-                // notifier.notify({
-                //     title: 'Email Verification failed',
-                //     message: 'Entered OTP is incorrect. Please try again!',
-                //     icon: 'dwb-logo.png',
-                //     contentImage: 'blog.png',
-                //     sound: 'ding.mp3',
-                //     wait: true
-                // });
                 swal.fire({
                     icon: 'error',
                     title: 'Email Verification failed',
@@ -114,29 +109,26 @@ class VerifyEmail extends Component {
     render() {
         return (
             <div className="container">
-                <div className="header">
-                    <div className="navigationclass row">
-                        <ul className="navbar-nav" id="navg">
-                            <li className="nav-item">
-                                <Link to="/RegisterInfo" className="nav-link register" id="reg" >Register
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="/Login" className="nav-link" id="log" >Login
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link active" id="hom" >Hi there</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="brand">Electronic</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="colorb">Ballot</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <div className= "header">
+                <ul className="navbar-nav" id="navg">
+                    
+                    <li className="nav-item">
+                        <a className=" brand">Electronic Ballot</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className=" colorb">On BlockChain</a>
+                    </li>
+                    <li className="nav-item">
+                    <Link to="/RegisterInfo" className="nav-link reg" id="log"> Register
+                    </Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link to="/Login" className="nav-link" id="log"> Login
+                    </Link>
+                    </li>
+                   
+                </ul>
+        </div>
 
         <div className="row">
                 <div className="pitchline" id="pitch">
@@ -145,36 +137,26 @@ class VerifyEmail extends Component {
                 </div>
         </div>
 
-        <div className="maps">
-<div className="overlaying ">
-        <div className="bckimage " id="bck"> </div>
-        <div className="qoute">
-            <div className ="h3" className="since-title"> HelpingPeopleConnect
-                    {/* <span></span> */}
-                    <br></br>
-                    Since 2020
-                    <br></br>
-                    Security & Trust
-            </div>
+        <div className="registerimage"></div>
+            <div className="qoute">
+                        <div className ="h3" className="since-title"> Helping People Connect
+                                <br></br>Since 2020
+                                <p>Security & Trust</p>
+                        </div>
         </div>
-     </div>
-     <div className="otpform otpdetails ">
-                    Email Verification
-                    
-                <input type="password" className="loginclass inputFields input" value={this.state.otp} onChange={this.onChange} id="otp" name="otp" placeholder="Enter the One-time Password" required>
-                 </input>
+        <div className="otpdetails ">Email Verification   
+                <input type="password" className="otpclass" value={this.state.otp} onChange={this.onChange} 
+                    id="otp" name="otp" placeholder="Enter the One-time Password" required>
+                </input>
                 <br></br>
                 <br></br>
                 <input type="checkbox" id="otpcheckbox" onClick={() => this.togglefunc()}></input>
-                <span className="otpblock ">Check to show password></span>
+                <span className="otpblock ">Check to show password</span>
                 <br></br>
                 <br></br>
                 <input  text='Submit OTP' type="submit" className="btn" onClick={() => this.doOtpPost()} ></input>
-                </div>
-                </div>
-
-            </div>
-
+        </div>
+     </div>
         );
     }
 }
