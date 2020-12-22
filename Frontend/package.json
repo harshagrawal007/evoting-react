@@ -15,7 +15,7 @@
     "mobx-react": "^6.1.8",
     "mocha": "^7.1.2",
     "moment": "^2.25.3",
-    "node-notifier": "^6.0.0",
+    "node-notifier": "^8.0.1",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
